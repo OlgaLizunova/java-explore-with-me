@@ -1,9 +1,10 @@
-package ru.practicum.mapper;
+package ru.practicum;
 
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.util.DefaultUriBuilderFactory;
+import ru.practicum.BaseClient;
 import ru.practicum.StatsClientApi;
 import ru.practicum.dto.EndpointHitDto;
 

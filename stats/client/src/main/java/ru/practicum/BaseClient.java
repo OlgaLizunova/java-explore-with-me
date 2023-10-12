@@ -1,4 +1,4 @@
-package ru.practicum.mapper;
+package ru.practicum;
 
 import org.springframework.http.*;
 import org.springframework.lang.Nullable;
