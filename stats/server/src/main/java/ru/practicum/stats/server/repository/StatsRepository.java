@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
-    @Query(value = "select new ru.practicum.model.ViewStats(h.app, h.uri, count (distinct h.ip)) " +
+    @Query(value = "select new ru.practicum.stats.server.model.ViewStats(h.app, h.uri, count (distinct h.ip)) " +
             "from EndpointHit AS h " +
             "where h.uri in :uris and h.timestamp between :start and :end " +
             "group by h.uri, h.app " +
@@ -21,7 +21,7 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
             @Param("end") LocalDateTime end
     );
 
-    @Query(value = "select new ru.practicum.model.ViewStats(h.app, h.uri, count (h.ip)) " +
+    @Query(value = "select new ru.practicum.stats.server.model.ViewStats(h.app, h.uri, count (h.ip)) " +
             "from EndpointHit AS h " +
             "where h.uri in :uris and h.timestamp between :start and :end " +
             "group by h.uri, h.app " +
@@ -32,7 +32,7 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
             @Param("end") LocalDateTime end
     );
 
-    @Query(value = "select new ru.practicum.model.ViewStats(h.app, h.uri, count (distinct h.ip)) " +
+    @Query(value = "select new ru.practicum.stats.server.model.ViewStats(h.app, h.uri, count (distinct h.ip)) " +
             "from EndpointHit AS h " +
             "where h.timestamp between :start and :end " +
             "group by h.uri, h.app " +
@@ -42,7 +42,7 @@ public interface StatsRepository extends JpaRepository<EndpointHit, Long> {
             @Param("end") LocalDateTime end
     );
 
-    @Query(value = "select new ru.practicum.model.ViewStats(h.app, h.uri, count (h.ip)) " +
+    @Query(value = "select new ru.practicum.stats.server.model.ViewStats(h.app, h.uri, count (h.ip)) " +
             "from EndpointHit AS h " +
             "where h.timestamp between :start and :end " +
             "group by h.uri, h.app " +
