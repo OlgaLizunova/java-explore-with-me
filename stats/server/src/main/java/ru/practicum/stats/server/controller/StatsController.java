@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.stats.dto.EndpointHitDto;
 import ru.practicum.stats.dto.StatsDto;
-import ru.practicum.stats.server.exceptions.InvalidDateRangeException;
 import ru.practicum.stats.server.service.StatsService;
 
 import javax.validation.Valid;
@@ -39,7 +38,7 @@ public class StatsController {
             @RequestParam(value = "uris", required = false) List<String> uris,
             @RequestParam(value = "unique", defaultValue = "false", required = false) boolean isUnique
     ) {
-        checkStartEndRanges(start, end);
+
         if (uris == null) {
             uris = Collections.emptyList();
         }
@@ -48,9 +47,5 @@ public class StatsController {
         return new ResponseEntity<>(viewStatsDto, HttpStatus.OK);
     }
 
-    private void checkStartEndRanges(LocalDateTime start, LocalDateTime end) {
-        if (end == null || start == null || end.isBefore(start)) {
-            throw new InvalidDateRangeException("Date range is invalid");
-        }
-    }
+
 }
