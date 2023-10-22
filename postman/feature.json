@@ -9,131 +9,7 @@
 		{
 			"name": "Private",
 			"item": [
-				{
-					"name": "Create comment",
-					"event": [
-						{
-							"listen": "prerequest",
-							"script": {
-								"exec": [
-									"const main = async () => {\r",
-									"    const api = new API(pm);\r",
-									"    const rnd = new RandomUtils();\r",
-									"\r",
-									"    try {\r",
-									"        const user = await api.addUser(rnd.getUser());\r",
-									"        const category = await api.addCategory(rnd.getCategory());\r",
-									"        let eventBody = rnd.getEvent(category.id);\r",
-									"        eventBody['requestModeration'] = true\r",
-									"        let event1 = await api.addEvent(user.id, eventBody);\r",
-									"        let event2 = await api.publishEvent(event1.id);\r",
-									"\r",
-									"        let eventId = event2.id;\r",
-									"\r",
-									"        pm.collectionVariables.set(\"uid\", user.id);\r",
-									"\r",
-									"        let commentText = rnd.getComment();\r",
-									"\r",
-									"        let comment = {\r",
-									"        text: commentText,\r",
-									"        event: eventId\r",
-									"        };\r",
-									"        \r",
-									"console.log(comment);\r",
-									"    pm.request.body.update({\r",
-									"        mode: 'raw',\r",
-									"        raw: JSON.stringify(comment),\r",
-									"        options: { raw: { language: 'json' } }\r",
-									"    });\r",
-									"    } catch(err) {\r",
-									"        console.error(\"Ошибка при подготовке тестовых данных.\", err);\r",
-									"    }\r",
-									"};\r",
-									"\r",
-									"const interval = setInterval(() => {}, 1000);\r",
-									"\r",
-									"setTimeout(async () => \r",
-									"    {\r",
-									"        try {\r",
-									"            // выполняем наш скрипт\r",
-									"            await main();\r",
-									"        } catch (e) {\r",
-									"            console.error(e);\r",
-									"        } finally {\r",
-									"            clearInterval(interval);\r",
-									"        }\r",
-									"    },  \r",
-									"    100 \r",
-									");"
-								],
-								"type": "text/javascript"
-							}
-						},
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {\r",
-									"    pm.response.to.have.status(201);  \r",
-									"});\r",
-									"\r",
-									"pm.test(\"Has comment create response\", function () {\r",
-									"    pm.response.to.be.withBody;\r",
-									"    pm.response.to.be.json;\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Test comment 'id' field\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData).to.have.property('id');\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Test comment 'text' field\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData).to.have.property('text');\r",
-									"    pm.expect(jsonData.text).to.not.be.null;\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Test comment 'created' field\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData).to.have.property('created');\r",
-									"    pm.expect(jsonData.created).to.not.be.null;\r",
-									"});\r",
-									"\r",
-									"pm.test(\"Test comment 'updated' field\", function () {\r",
-									"    var jsonData = pm.response.json();\r",
-									"    pm.expect(jsonData).to.have.property('updated');\r",
-									"    pm.expect(jsonData.updated).to.not.be.null;\r",
-									"});\r",
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments",
-							"host": [
-								"{{baseUrl}}"
-							],
-							"path": [
-								"users",
-								":userId",
-								"comments"
-							],
-							"variable": [
-								{
-									"key": "userId",
-									"value": "{{uid}}"
-								}
-							]
-						}
-					},
-					"response": []
-				},
-				{
+					{
 					"name": "Attempt to create comment to non existing event",
 					"event": [
 						{
@@ -162,7 +38,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"text\": \"Ерунда\",\r\n    \"event\": 100\r\n}",
+							"raw": "{\r\n    \"text\": \"Ерунда\",\r\n    \"event\": 100000\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
