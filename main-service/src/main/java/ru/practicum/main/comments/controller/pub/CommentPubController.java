@@ -37,6 +37,6 @@ public class CommentPubController {
             @RequestParam(name = "size", required = false, defaultValue = DEFAULT_SIZE) @Positive int size) {
         log.info("Received GET request for comments about event with id: {} ", eventId);
         Collection<CommentShortDto> commentsAboutEvent = commentService.getCommentsAboutEvent(eventId, from, size);
-        return new ResponseEntity<>(commentsAboutEvent, HttpStatus.OK );
+        return new ResponseEntity<>(commentsAboutEvent, HttpStatus.OK);
     }
 }
