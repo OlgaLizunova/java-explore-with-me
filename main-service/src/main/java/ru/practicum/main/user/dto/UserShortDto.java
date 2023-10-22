@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserShotDto {
+public class UserShortDto {
     @Email(message = "Field: email. Error: must be email format.")
     @NotBlank(message = "Field: email. Error: must not be blank.")
     @Size(min = 6, message = "validation email size too short")
