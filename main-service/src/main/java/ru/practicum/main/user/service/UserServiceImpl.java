@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.main.exception.NotFoundException;
 import ru.practicum.main.user.dto.UserDto;
-import ru.practicum.main.user.dto.UserShotDto;
+import ru.practicum.main.user.dto.UserShortDto;
 import ru.practicum.main.user.dto.mapper.UserMapper;
 import ru.practicum.main.user.model.User;
 import ru.practicum.main.user.repository.UserRepository;
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Transactional()
     @Override
-    public UserDto addUserAdmin(UserShotDto newUserDto) {
+    public UserDto addUserAdmin(UserShortDto newUserDto) {
         User newUser = userMapper.toUser(newUserDto);
         User addedUser = userRepository.save(newUser);
         log.info("Was add user={}", addedUser);

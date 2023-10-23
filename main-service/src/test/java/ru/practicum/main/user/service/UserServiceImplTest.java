@@ -8,7 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Pageable;
 import ru.practicum.main.user.dto.UserDto;
-import ru.practicum.main.user.dto.UserShotDto;
+import ru.practicum.main.user.dto.UserShortDto;
 import ru.practicum.main.user.dto.mapper.UserMapper;
 import ru.practicum.main.user.model.User;
 import ru.practicum.main.user.repository.UserRepository;
@@ -40,7 +40,7 @@ class UserServiceImplTest {
 
     @Test
     void addUser_whenAddUser_thenUserAdded() {
-        UserShotDto newUserShotDto = new UserShotDto(email, userName);
+        UserShortDto newUserShotDto = new UserShortDto(email, userName);
         UserDto newUserDto = new UserDto(email, userId, userName);
         User newUser = new User(userName, userId, email);
         when(userMapper.toUser(newUserShotDto)).thenReturn(newUser);

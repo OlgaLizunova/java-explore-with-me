@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.practicum.main.user.dto.UserDto;
-import ru.practicum.main.user.dto.UserShotDto;
+import ru.practicum.main.user.dto.UserShortDto;
 import ru.practicum.main.user.service.UserService;
 
 import javax.validation.Valid;
@@ -26,7 +26,7 @@ public class UserAdminController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<UserDto> addUserAdmin(@RequestBody @Valid UserShotDto userShotDto) {
+    public ResponseEntity<UserDto> addUserAdmin(@RequestBody @Valid UserShortDto userShotDto) {
         log.info("Received POST request for add new user with body={}", userShotDto);
         UserDto savedUser = userService.addUserAdmin(userShotDto);
         return new ResponseEntity<>(savedUser, HttpStatus.CREATED);

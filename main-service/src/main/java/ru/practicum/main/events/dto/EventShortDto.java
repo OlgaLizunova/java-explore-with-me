@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import ru.practicum.main.category.dto.CategoryDto;
-import ru.practicum.main.user.dto.UserShotDto;
+import ru.practicum.main.user.dto.UserShortDto;
 
 @Builder
 @Data
@@ -17,7 +17,7 @@ public class EventShortDto {
     private int confirmedRequests;
     private String eventDate;
     private int id;
-    private UserShotDto initiator;
+    private UserShortDto initiator;
     private boolean paid;
     private String title;
     private int views;
